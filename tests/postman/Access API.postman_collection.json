@@ -18,19 +18,25 @@
 					"formdata": [
 						{
 							"key": "user",
-							"value": "pepexx",
+							"value": "pepexxzyd",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "alkdjfa@adfadsf.comxx",
+							"value": "alkdjfa@adfadsf.comxxtsd",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "pass",
 							"value": "123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "system_id",
+							"value": "5d38e2466a354f35c722b047",
 							"description": "",
 							"type": "text"
 						}
@@ -43,7 +49,7 @@
 		{
 			"name": "User activate if user_id and activation_key exist",
 			"request": {
-				"url": "localhost:3000/user/activate",
+				"url": "localhost:3000/user/check/activate",
 				"method": "POST",
 				"header": [
 					{
@@ -76,7 +82,7 @@
 		{
 			"name": "User change pass if user_id and reset_key exist",
 			"request": {
-				"url": "localhost:3000/user/activate",
+				"url": "localhost:3000/user/check/reset",
 				"method": "POST",
 				"header": [
 					{
@@ -89,14 +95,47 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "_id",
+							"key": "email",
 							"value": "5d430f0e396b40250dfe193d",
 							"description": "",
 							"type": "text"
 						},
 						{
-							"key": "activation_key",
-							"value": "OmBrENYZqulC1yet",
+							"key": "reset_key",
+							"value": "JsUjuhXhMUPkQlGm",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "YiWX",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User change reset_key if email exist",
+			"request": {
+				"url": "localhost:3000/user/reset",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "alkdjfa@adfadsf.comxx",
 							"description": "",
 							"type": "text"
 						}

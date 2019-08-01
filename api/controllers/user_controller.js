@@ -165,4 +165,45 @@ router.post('/user/check/reset', [
   }
 ]);
 
+router.post('/user/reset', [
+  //middlewares.sessionRequiredFalse,
+  async (ctx, next) => {
+    var resp = {};
+    var status = 200;
+    // get user with user and email
+    var temp = await User.findOne({
+      $and: [
+        {
+          email: ctx.request.body.email
+        },
+      ]
+    }).exec();
+    if(temp == null){
+      // error, neither reset_key nor _id not exist
+      status = 409;
+      resp.action_executed = 'none';
+      resp.data = 'Correo no registrado';
+    }else{
+      // update user state and change reset_key
+      var temp = await User.findOneAndUpdate(
+        {
+          email: ctx.request.body.email
+        },
+        {
+          $set: {
+            reset_key: random(16),
+          }
+        }
+      );
+      resp.action_executed = 'updated';
+      resp.reset_key = temp.reset_key;
+      resp._id = temp._id;
+    }
+    // response
+    ctx.set('Content-Type', 'text/html; charset=utf-8');
+    ctx.status = status;
+    ctx.body = JSON.stringify(resp);
+  }
+]);
+
 exports.routes = router.middleware();
