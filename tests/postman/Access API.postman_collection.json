@@ -1,0 +1,44 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Access API",
+		"_postman_id": "eaefac86-bbd3-6e52-9905-2e8ec83917f8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User create if user and email not exist",
+			"request": {
+				"url": "localhost:3000/user/create",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "ladjkf",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "alkdjfa@adfadsf.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

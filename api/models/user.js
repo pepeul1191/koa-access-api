@@ -6,6 +6,7 @@
  */
 
 const db = require('../../config/database');
+const UserSystem = require('./user_system');
 
 module.exports = db.mongoose.model('users',
   new db.Schema({
@@ -16,6 +17,6 @@ module.exports = db.mongoose.model('users',
     reset_key: String,
     activation_key: String,
     state_id:  db.Schema.Types.ObjectId,
-    // systems: [UserSystem], 
+    systems: [UserSystem],
   })
 );

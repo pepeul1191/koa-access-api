@@ -1,7 +1,8 @@
 /**
  * user_check helper
  *
- * @description :: return an array of students if user and pass exists in db
+ * @description :: return an array of students if user and pass exists in db,
+ *                 it uses mongo aggregation framework
  * @help        :: use an await when call the function
  */
 
