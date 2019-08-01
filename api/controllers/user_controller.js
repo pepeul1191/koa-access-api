@@ -60,8 +60,8 @@ router.post('/user/create', [
         email: ctx.request.body.email,
         profile_picture: 'default_user.png',
         state_id: getStatusId('activation_pending'),
-        activation_key: random(16),
-        reset_key: random(16),
+        activation_key: random(24),
+        reset_key: random(24),
         systems: [{
           system_id: db.mongoose.Types.ObjectId(ctx.request.body.system_id),
           permissions_id: [],
@@ -109,7 +109,7 @@ router.post('/user/check/activate', [
         {
           $set: {
             state_id: getStatusId('active'),
-            activation_key: random(16),
+            activation_key: random(24),
           }
         }
       );
@@ -152,7 +152,7 @@ router.post('/user/check/reset', [
         {
           $set: {
             pass: ctx.request.body.pass,
-            reset_key: random(16),
+            reset_key: random(24),
           }
         }
       );
@@ -191,7 +191,7 @@ router.post('/user/reset', [
         },
         {
           $set: {
-            reset_key: random(16),
+            reset_key: random(24),
           }
         }
       );
