@@ -1,0 +1,39 @@
+body{
+  background: #EEE;
+}
+
+#workspace{
+  background: #FFF;
+  padding-bottom: 15px;
+  padding-top: 5px;
+}
+
+footer{
+  background: transparent !important;
+  padding: 0px;
+  text-align: right;
+  color: #888;
+  margin-top: 10px;
+}
+
+.page-tittle{
+  padding-top: 10px;
+  font-size: 16px;
+}
+
+.row-icon{
+  color: #333;
+  margin-right: 5px;
+}
+
+.btn-icon{
+  margin-right: 5px;
+}
+
+.footer-icon{
+  font-size: 16px;
+}
+
+.footer-icon:hover, td > a:hover{
+  cursor: pointer;
+}
