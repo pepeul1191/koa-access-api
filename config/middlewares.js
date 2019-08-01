@@ -46,12 +46,10 @@ var errorNotFoundHandler = async function (ctx, next){
         var resource = `${ctx.method} ${ctx.status} ${ctx.url}`;
         resource = resource.split('.');
         if(static_extensions.indexOf(resource[resource.length - 1]) == -1){
-          await ctx.redirect('/error/access/404');
-          /*
+          // await ctx.redirect('/error/access/404');
           ctx.set('Content-Type', 'text/html');
           ctx.status = 404;
-          ctx.body = contents.get('error')[lang].error_handler.post_404;
-          */
+          ctx.body = contents.get('error')[lang].error_handler.get_404;
         }
       }else{ 
         ctx.set('Content-Type', 'text/html');
