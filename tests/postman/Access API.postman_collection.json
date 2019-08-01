@@ -18,19 +18,85 @@
 					"formdata": [
 						{
 							"key": "user",
-							"value": "ladjkf",
+							"value": "pepexx",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "alkdjfa@adfadsf.com",
+							"value": "alkdjfa@adfadsf.comxx",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "pass",
 							"value": "123",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User activate if user_id and activation_key exist",
+			"request": {
+				"url": "localhost:3000/user/activate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_id",
+							"value": "5d430f0e396b40250dfe193d",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "activation_key",
+							"value": "OmBrENYZqulC1yet",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User change pass if user_id and reset_key exist",
+			"request": {
+				"url": "localhost:3000/user/activate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_id",
+							"value": "5d430f0e396b40250dfe193d",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "activation_key",
+							"value": "OmBrENYZqulC1yet",
 							"description": "",
 							"type": "text"
 						}

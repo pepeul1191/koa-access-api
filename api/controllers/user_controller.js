@@ -117,4 +117,47 @@ router.post('/user/activate', [
   }
 ]);
 
+router.post('/user/reset', [
+  //middlewares.sessionRequiredFalse,
+  async (ctx, next) => {
+    var resp = {};
+    var status = 200;
+    // get user with user and email
+    var temp = await User.findOne({
+      $and: [
+        {
+          _id: ctx.request.body._id
+        },
+        {
+          reset_key: ctx.request.body.reset_key
+        },
+      ]
+    }).exec();
+    if(temp == null){
+      // error, neither reset_key nor _id not exist
+      status = 409;
+      resp.action_executed = 'none';
+      resp.data = 'Código de cambio de contraseña errado';
+    }else{
+      // update user state and change reset_key
+      await User.findOneAndUpdate(
+        {
+          _id: ctx.request.body._id
+        },
+        {
+          $set: {
+            pass: ctx.request.body.pass,
+            reset_key: random(16),
+          }
+        }
+      );
+      resp.action_executed = 'updated';
+    }
+    // response
+    ctx.set('Content-Type', 'text/html; charset=utf-8');
+    ctx.status = status;
+    ctx.body = JSON.stringify(resp);
+  }
+]);
+
 exports.routes = router.middleware();
