@@ -17,5 +17,12 @@ const middlewares = {
   csrf_check: true, 
 };
 
+const body = {
+  multipart: true, 
+  uploadDir: '.',
+  urlencoded: true,
+};
+
 exports.data = data;
 exports.middlewares = middlewares;
+exports.body = body;

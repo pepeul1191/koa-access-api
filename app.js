@@ -1,25 +1,16 @@
 const Koa = require('koa');
 const static = require('koa-static');
-const render = require('koa-ejs');
-const path = require('path');
+const koaBody = require('koa-body');
 // export configs
-// const sockets = require('./config/sockets');
-// const constants = require('./config/constants');
 const middlewares = require('./config/middlewares');
 const bootstrap = require('./config/bootstrap');
+const constants = require('./config/constants');
 // new app
 const app = new Koa();
 app.keys = ['rnbfpzfuywmiwtfrrlomwlzlhdxfxjnfifzvkrloobswyoifkt'];
+app.use(koaBody(constants.body));
 // static files
 app.use(static(__dirname + '/public'));
-// views EJS
-render(app, {
-  root: path.join(__dirname, 'views'),
-  layout: false,
-  viewExt: 'ejs',
-  cache: false,
-  debug: false
-});
 // middlewares
 app.use(middlewares.preResponse());
 app.use(middlewares.showLogs());
