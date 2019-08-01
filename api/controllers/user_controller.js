@@ -2,7 +2,9 @@ const Router = require('koa-trie-router');
 const middlewares = require('../../config/middlewares');
 const User = require('../models/user');
 const userCheck = require('../helpers/user_check');
+const getStatusId = require('../helpers/get_status_id');
 const random = require('../helpers/random');
+const db = require('../../config/database');
 
 let router = new Router();
 
@@ -57,10 +59,13 @@ router.post('/user/create', [
         pass: ctx.request.body.pass,
         email: ctx.request.body.email,
         profile_picture: 'default_user.png',
-        state_id: '5d3a08bf0f10e27b34624873', // activation pending
+        state_id: getStatusId('activation_pending'),
         activation_key: random(16),
         reset_key: random(16),
-        systems: [],
+        systems: [{
+          system_id: db.mongoose.Types.ObjectId(ctx.request.body.system_id),
+          permissions_id: [],
+        }],
       });
       var new_user = await user.save();
       resp.action_executed = 'create';
@@ -103,7 +108,7 @@ router.post('/user/activate', [
         },
         {
           $set: {
-            state_id: '5d3a08bf0f10e27b34624872', // active
+            state_id: getStatusId('active'),
             activation_key: random(16),
           }
         }
