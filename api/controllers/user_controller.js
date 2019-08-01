@@ -37,11 +37,15 @@ router.post('/user/create', [
     // get user with user and email
     var temp = await User.findOne({
       $or: [
-        {user: ctx.request.body.user},
-        {email: ctx.request.body.email},
+        {
+          user: ctx.request.body.user
+        },
+        {
+          email: ctx.request.body.email
+        },
       ]
     }).exec();
-    if(temp){
+    if(temp != null){
       // error, neither user nor email are unique
       status = 409;
       resp.action_executed = 'none';
@@ -62,6 +66,49 @@ router.post('/user/create', [
       resp.action_executed = 'create';
       resp._id = new_user._id;
       resp.activation_key = new_user.activation_key;
+    }
+    // response
+    ctx.set('Content-Type', 'text/html; charset=utf-8');
+    ctx.status = status;
+    ctx.body = JSON.stringify(resp);
+  }
+]);
+
+router.post('/user/activate', [
+  //middlewares.sessionRequiredFalse,
+  async (ctx, next) => {
+    var resp = {};
+    var status = 200;
+    // get user with user and email
+    var temp = await User.findOne({
+      $and: [
+        {
+          _id: ctx.request.body._id
+        },
+        {
+          activation_key: ctx.request.body.activation_key
+        },
+      ]
+    }).exec();
+    if(temp == null){
+      // error, neither activation_key nor _id not exist
+      status = 409;
+      resp.action_executed = 'none';
+      resp.data = 'Código de activación errado';
+    }else{
+      // update user state and change reset_key
+      await User.findOneAndUpdate(
+        {
+          _id: ctx.request.body._id
+        },
+        {
+          $set: {
+            state_id: '5d3a08bf0f10e27b34624872', // active
+            activation_key: random(16),
+          }
+        }
+      );
+      resp.action_executed = 'activated';
     }
     // response
     ctx.set('Content-Type', 'text/html; charset=utf-8');
