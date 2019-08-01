@@ -1,7 +1,15 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const db = mongoose.connect('mongodb://localhost:27017/chat_db');
+const Sequelize = require('sequelize');
 
-exports.db = db;
-exports.Schema = Schema;
-exports.mongoose = mongoose;
+module.exports = new Sequelize('database', 'username', 'password', {
+	// host: 'localhost',
+	dialect: 'sqlite',
+	pool: {
+		max: 5,
+		min: 0,
+		idle: 10000
+	},
+	storage: 'db/demo.db',
+	define: {
+		timestamps: false // true by default
+	}
+});
