@@ -79,7 +79,7 @@ router.post('/user/create', [
   }
 ]);
 
-router.post('/user/activate', [
+router.post('/user/check/activate', [
   //middlewares.sessionRequiredFalse,
   async (ctx, next) => {
     var resp = {};
@@ -122,7 +122,7 @@ router.post('/user/activate', [
   }
 ]);
 
-router.post('/user/reset', [
+router.post('/user/check/reset', [
   //middlewares.sessionRequiredFalse,
   async (ctx, next) => {
     var resp = {};
