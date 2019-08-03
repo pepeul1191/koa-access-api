@@ -79,6 +79,20 @@ router.post('/user/create', [
   }
 ]);
 
+router.post('/user/delete', [
+  //middlewares.sessionRequiredFalse,
+  async (ctx, next) => {
+    var resp = {};
+    var status = 200;
+    // get user with user and email
+    await User.findByIdAndDelete(ctx.request.body._id);
+    // response
+    ctx.set('Content-Type', 'text/html; charset=utf-8');
+    ctx.status = status;
+    ctx.body = JSON.stringify(resp);
+  }
+]);
+
 router.post('/user/check/activate', [
   //middlewares.sessionRequiredFalse,
   async (ctx, next) => {
