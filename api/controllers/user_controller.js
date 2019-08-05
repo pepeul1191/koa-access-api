@@ -1,7 +1,6 @@
 const Router = require('koa-trie-router');
-const middlewares = require('../../config/middlewares');
+// const middlewares = require('../../config/middlewares');
 const User = require('../models/user');
-const userCheck = require('../helpers/user_check');
 const getStatusId = require('../helpers/get_status_id');
 const random = require('../helpers/random');
 const db = require('../../config/database');
